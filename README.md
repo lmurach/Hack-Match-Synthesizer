@@ -15,8 +15,9 @@ https://github.com/Quillington/Hack-Match-Synthesizer/assets/66843400/3aa96e2a-1
 Next is a side by side comparison of my emulated display (left) and the real menu (right). Some liberties were taken for time and aesthetic reasons.
 
 <picture>
-<img src=https://github.com/Quillington/Hack-Match-Synthesizer/assets/66843400/0e1a567f-ab6d-4b63-a0db-f32e49bf919b>
+<img src=https://github.com/Quillington/Hack-Match-Synthesizer/assets/66843400/c6c5e999-061f-44af-b399-e9b00ddbd5bd>
 </picture>
+
 
 ## Sound Implementation
 
@@ -61,7 +62,10 @@ The following [display example code](https://github.com/NewhavenDisplay/NHD-1.69
 
 ### Bit-Banging to SPI
 The example code set the settings so that each pixel required 18 bits of color data to be sent from the microcontroller to the display. The code sent these 18 bits by manually bit-banging an output pin high and low. This proved to be extremely slow. (About 14 seconds to turn the entire screen one color). The original plan was to send all 18 bits using SPI, however the Arduino only allows 8 bits to be sent over SPI. Sending 24 bits did not work, so instead 16 bits were sent with the last 2 sent without the SPI protocol. Below shows an oscilloscope reading of the bits, showing the speed difference between the first 16 and the last 2.
-// picture
+<picture>
+<img src=https://github.com/Quillington/Hack-Match-Synthesizer/assets/66843400/db053716-8447-430f-813d-1e3b821a5b1e>
+</picture>
+
 Later this approach was redone so that the display was changed to the 16 bit color mode and no bit-banging was necessary. This further increased the speed to 0.5us per screen update. Unfortunately this speed is still quite slow for gameplay. For an interactive game to utilize this display, a different microcontroller must be used.
 
 
